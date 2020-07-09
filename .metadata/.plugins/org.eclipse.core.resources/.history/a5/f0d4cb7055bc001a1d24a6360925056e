@@ -1,0 +1,6 @@
+package com.lawencon.gojek.service;
+
+public interface StrukService {
+
+	abstract String cetak(String currentLoc, String destinationLoc, Integer defaultAmount);
+}

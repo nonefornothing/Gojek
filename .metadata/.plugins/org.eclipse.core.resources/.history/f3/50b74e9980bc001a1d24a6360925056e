@@ -1,0 +1,14 @@
+package local.BotInc.Gojek.View;
+
+import java.util.List;
+import java.util.Scanner;
+
+import local.BotInc.Gojek.Controller.GoFoodController;
+
+public class ViewGoFood {
+
+	public ViewGoFood(List<String> listHistory) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

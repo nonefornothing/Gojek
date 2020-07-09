@@ -1,0 +1,24 @@
+package local.BotInc.Gojek.Controller;
+
+import local.BotInc.Gojek.Service.GoSendService;
+
+public class GoSendController extends BaseController {
+
+	private String currentLoc, destinationLoc,nameItem,typeItem;
+	private float weightItem;
+
+	public GoSendController(String currentLoc, String destinationLoc,String nameItem, String typeItem,float weightItem) {
+		this.currentLoc = currentLoc;
+		this.destinationLoc = destinationLoc;
+		this.nameItem = nameItem;
+		this.typeItem = typeItem;
+		this.weightItem = weightItem;
+		this.goSendService = new GoSendService();
+	}
+
+	@Override
+	protected String start() {
+		return this.goSendService.cetak(currentLoc, destinationLoc, defaultAmount);
+	}
+
+}

@@ -1,0 +1,22 @@
+package local.BotInc.Gojek.Service;
+
+import local.BotInc.Gojek.Model.Driver;
+
+public class GoFoodService  implements BaseService  {
+
+	@Override
+	public Driver getDrivers() {
+		Driver driver = new Driver();
+		driver.setNama("imam");
+		driver.setPlatNo("B 123 ABC");
+
+		return driver;
+	}
+	@Override
+	public String says() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

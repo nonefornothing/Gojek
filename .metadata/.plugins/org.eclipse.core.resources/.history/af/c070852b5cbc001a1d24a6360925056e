@@ -1,0 +1,76 @@
+package local.BotInc.Gojek.Service;
+
+import local.BotInc.Gojek.Model.*;
+import local.BotInc.Gojek.Controller.*;
+
+public class GoSendService implements BaseService {
+	
+	private String currentLoc, destinationLoc,nameItem,typeItem;
+	private float weightItem;
+	
+	public GoSendService(String currentLoc, String destinationLoc,String nameItem, String typeItem,float weightItem) {
+		this.currentLoc = currentLoc;
+		this.destinationLoc = destinationLoc;
+		this.nameItem = nameItem;
+		this.typeItem = typeItem;
+		this.weightItem = weightItem;
+	}
+	
+	@Override
+	public Driver getDrivers() {
+		Driver driver = new Driver();
+		driver.setNama("imam");
+		driver.setPlatNo("B 123 ABC");
+		return driver;
+	}
+	
+	public Customer getCustomer() {
+		Customer customer = new Customer(nameItem, typeItem, weightItem);
+		customer.setNameItem(nameItem);
+		customer.setTypeItem(typeItem);
+		customer.setWeightItem(weightItem);
+		return customer;
+	}
+
+	public String cetak() {
+		Driver driver = getDrivers();
+		Customer customer = getCustomer();
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n=== Details ===");
+		sb.append("\nDriver name : " + driver.getNama());
+		sb.append("\nPlat no : " + driver.getPlatNo());
+		sb.append("\nSend item from : " + currentLoc + " to " + destinationLoc);
+		sb.append("\nItem name : " + customer.getNameItem());
+		sb.append("\nType name : " + customer.getTypeItem());
+		sb.append("\nWeight Item : " + customer.getWeightItem());
+		sb.append("\nAmount : Rp." + totalAmount() + "\n");
+		sb.append(says());
+
+		return sb.toString();
+	}
+
+	public float totalAmount() {
+		Integer condition1 = currentLoc.length();
+		Integer condition2 = destinationLoc.length();
+		return (condition1 * condition2 * defaultAmount * weightItem);
+	}
+
+	@Override
+	public String says() {
+		return "=== Thanks ===";
+	}
+
+	@Override
+	public String cetak(String currentLoc, String destinationLoc, Integer defaultAmount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer totalAmount(String currentLoc, String destinationLoc, Integer defaultAmount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+}

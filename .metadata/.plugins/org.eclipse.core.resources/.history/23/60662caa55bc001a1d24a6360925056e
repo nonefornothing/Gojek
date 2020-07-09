@@ -1,0 +1,9 @@
+package local.BotInc.Gojek.Controller;
+
+public abstract class BaseController {
+	
+	protected Integer defaultAmount = 1000;
+	
+	protected abstract String start();
+
+}

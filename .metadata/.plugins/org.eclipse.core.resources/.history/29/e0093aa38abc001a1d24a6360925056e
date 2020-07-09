@@ -1,0 +1,49 @@
+package local.BotInc.Gojek.View;
+
+import java.util.List;
+
+import static local.BotInc.Gojek.Constant.Restaurant;
+import local.BotInc.Gojek.Controller.GoRideController;
+
+public class ViewGoFood extends BaseView {
+
+	private List<String> listHistory;
+	
+	public ViewGoFood(List<String> listHistory) {
+		this.listHistory = listHistory;
+		show();
+	}
+
+	@Override
+	void show() {
+		
+		System.out.println("==== Welcome to Go-Food by " + super.brandName + " ====");
+		System.out.print("Input your location : ");
+		String currentLoc = input.nextLine();
+		System.out.print("Input your destination : ");
+		String destinationLoc = input.nextLine();
+		
+		System.out.println("Finding driver....");
+		System.out.println("Driver Found");
+		
+		GoRideController goride = new GoRideController(currentLoc, destinationLoc);
+		String cetak = goride.start();
+		listHistory.add(cetak);
+		System.out.println(cetak);
+				
+		System.out.print("Repeat [y or n] : ");
+		String repeat = input.nextLine();
+		if("y".equalsIgnoreCase(repeat)) {
+			show();
+		}else {			
+			new ViewMain(listHistory);
+		}
+		
+	}
+	
+	public static void tampilkanDaftar() {
+		System.out.println("Daftar Masakan yang dapat dipesan : ");
+		System.out.println(BGIWAN1.no);
+	}
+
+}

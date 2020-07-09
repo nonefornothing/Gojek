@@ -1,0 +1,10 @@
+package com.lawencon.gojek;
+
+import com.lawencon.gojek.view.ViewMain;
+
+public class App {
+
+	public static void main(String[] args) {
+		new ViewMain();
+	}
+}

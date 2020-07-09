@@ -1,0 +1,15 @@
+package local.BotInc.Gojek.Controller;
+
+import com.lawencon.gojek.model.Driver;
+
+public abstract class BaseController {
+	
+	protected Integer defaultAmount = 1000;
+
+	abstract Driver getDrivers();
+	
+	abstract Integer totalAmount();
+	
+	abstract String says();
+		
+}

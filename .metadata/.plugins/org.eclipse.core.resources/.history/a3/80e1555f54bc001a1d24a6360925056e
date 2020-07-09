@@ -1,0 +1,15 @@
+package com.lawencon.gojek.service;
+
+import com.lawencon.gojek.model.Driver;
+
+public interface BaseService {
+
+	abstract Driver getDrivers();
+
+	abstract String cetak(String currentLoc, String destinationLoc, Integer defaultAmount);
+
+	abstract Integer totalAmount(String currentLoc, String destinationLoc, Integer defaultAmount);
+
+	abstract String says();
+
+}

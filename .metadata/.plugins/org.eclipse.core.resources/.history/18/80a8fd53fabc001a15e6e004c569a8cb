@@ -1,0 +1,6 @@
+package local.BotInc.Gojek.Service;
+
+
+public class GoFoodService  extends  {
+
+}

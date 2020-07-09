@@ -1,0 +1,17 @@
+package local.BotInc.Gojek.Service;
+
+import local.BotInc.Gojek.Model.Driver;
+
+public interface BaseService {
+	
+	public Integer defaultAmount = 1000;
+
+	abstract Driver getDrivers();
+
+	abstract String cetak(String currentLoc, String destinationLoc, Integer defaultAmount);
+
+	abstract Integer totalAmount(String currentLoc, String destinationLoc, Integer defaultAmount);
+
+	abstract String says();
+
+}

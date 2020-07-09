@@ -1,0 +1,11 @@
+package local.BotInc.Gojek.Service;
+
+import local.BotInc.Gojek.Model.Driver;
+
+public interface BaseService {
+	
+	abstract Driver getDrivers();
+
+	abstract String says();
+
+}

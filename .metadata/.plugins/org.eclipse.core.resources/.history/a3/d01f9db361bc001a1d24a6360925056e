@@ -1,0 +1,20 @@
+package local.BotInc.Gojek.Controller;
+
+import local.BotInc.Gojek.Service.GoRideService;
+
+public class GoRideController extends BaseController {
+
+	private String currentLoc, destinationLoc;
+	private GoRideService goRideService;
+
+	public GoRideController(String currentLoc, String destinationLoc) {
+		this.currentLoc = currentLoc;
+		this.destinationLoc = destinationLoc;
+		this.goRideService = new GoRideService();
+	}
+	
+	public String start() {
+		return this.goRideService.cetak(currentLoc, destinationLoc, defaultAmount);
+	}
+	
+}
