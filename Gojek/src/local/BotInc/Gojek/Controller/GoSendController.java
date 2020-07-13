@@ -1,66 +1,31 @@
 package local.BotInc.Gojek.Controller;
 
-import local.BotInc.Gojek.Model.*;
-import local.BotInc.Gojek.Service.*;
+import local.BotInc.Gojek.Service.GoSendService;
 
-public class GoSendController extends BaseController implements StrukService {
+public class GoSendController extends BaseController  {
 
-	private String currentLoc, destinationLoc,nameItem,typeItem;
+	private String nameSender,nameReceiver,currentLoc, destinationLoc,nameItem,typeItem;
 	private float weightItem;
+	private GoSendService goSendService;
+	private int gopayIdentify,tip,rate;
 
-	public GoSendController(String currentLoc, String destinationLoc,String nameItem, String typeItem,float weightItem) {
+	public GoSendController(int gopayIdentify,String nameSender,String nameReceiver,String currentLoc, String destinationLoc,String nameItem, String typeItem, float weightItem,int tip,int rate) {
+		this.gopayIdentify = gopayIdentify;
+		this.nameSender = nameSender;
+		this.nameReceiver = nameReceiver;
 		this.currentLoc = currentLoc;
 		this.destinationLoc = destinationLoc;
 		this.nameItem = nameItem;
 		this.typeItem = typeItem;
 		this.weightItem = weightItem;
-	}
-	
-	@Override
-	public Driver getDrivers() {
-		Driver driver = new Driver();
-		driver.setNama("imam");
-		driver.setPlatNo("B 123 ABC");
-
-		return driver;
-	}
-	
-	public Customer getCustomer() {
-		Customer customer = new Customer();
-		customer.setNameItem(nameItem);
-		customer.setTypeItem(typeItem);
-		customer.setWeightItem(weightItem);
-		return customer;
+		this.tip = tip;
+		this.rate = rate;
+		this.goSendService = new GoSendService(gopayIdentify,nameSender,nameReceiver,currentLoc, destinationLoc, nameItem, typeItem, weightItem,tip,rate);
 	}
 
 	@Override
-	public String cetak() {
-		Driver driver = getDrivers();
-		Customer customer = getCustomer();
-		StringBuilder sb = new StringBuilder();
-		sb.append("\n=== Details ===");
-		sb.append("\nDriver name : " + driver.getNama());
-		sb.append("\nPlat no : " + driver.getPlatNo());
-		sb.append("\nSend item from : " + currentLoc + " to " + destinationLoc);
-		sb.append("\nItem name : " + customer.getNameItem());
-		sb.append("\nType name : " + customer.getTypeItem());
-		sb.append("\nWeight Item : " + customer.getWeightItem());
-		sb.append("\nAmount : Rp." + totalAmount() + "\n");
-		sb.append(says());
-
-		return sb.toString();
-	}
-
-	@Override
-	public Integer totalAmount() {
-		Integer condition1 = currentLoc.length();
-		Integer condition2 = destinationLoc.length();
-		return (int) (condition1 * condition2 * defaultAmount * weightItem);
-	}
-
-	@Override
-	public String says() {
-		return "=== Thanks ===";
+	public String start() {
+		return this.goSendService.cetak();
 	}
 
 }

@@ -4,25 +4,28 @@ import local.BotInc.Gojek.Service.GoFoodService;
 
 public class GoFoodController extends BaseController {
 	
-	private String namaCustomer,currentLoc,namaRestaurant, alamatRestaurant,namaMenu;
+	private String namaCustomer,alamatCustomer,namaRestaurant, alamatRestaurant,namaMenu;
 	private int hargaMenu,jlhPesanan;
 	private GoFoodService goFoodService;
+	private int gopayIdentify,tip,rate;
 	
-	public GoFoodController(String namaCustomer,  String currentLoc, String namaRestaurant, String alamatRestaurant, String namaMenu, int hargaMenu, int jlhPesanan) {
+	public GoFoodController(int gopayIdentify,String namaCustomer,  String alamatCustomer, String namaRestaurant, String alamatRestaurant, String namaMenu, int hargaMenu, int jlhPesanan,int tip,int rate) {
+		this.gopayIdentify = gopayIdentify;
 		this.namaCustomer = namaCustomer;
-		this.currentLoc = currentLoc;
+		this.alamatCustomer = alamatCustomer;
 		this.namaRestaurant = namaCustomer;
 		this.alamatRestaurant = alamatRestaurant;
 		this.namaMenu = namaMenu;
 		this.hargaMenu = hargaMenu;
 		this.jlhPesanan = jlhPesanan;
-		this.goFoodService = new GoFoodService();
+		this.tip = tip;
+		this.rate = rate;
+		this.goFoodService = new GoFoodService(gopayIdentify,namaCustomer,  alamatCustomer, namaRestaurant, alamatRestaurant, namaMenu, hargaMenu, jlhPesanan,tip,rate);
 	}
 	
-	
 	@Override
-	protected String start() {
-		return this.goFoodService.cetak(namaCustomer, currentLoc, namaRestaurant , alamatRestaurant , namaMenu , hargaMenu, jlhPesanan);
+	public String start() {
+		return this.goFoodService.cetak();
 	}
 	
 }

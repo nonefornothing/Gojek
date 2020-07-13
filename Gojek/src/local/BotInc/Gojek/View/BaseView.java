@@ -7,11 +7,7 @@ public abstract class BaseView {
 	
 	Scanner input = new Scanner(System.in);
 
-	protected String brandName = "Go-Jek";
-	
-	protected BaseView() {
-		show();
-	}
+	protected String brandName = "Bot Inc";
 	
 	abstract void show();
 	
@@ -36,5 +32,7 @@ public abstract class BaseView {
 			}
 		}
 	}
+	
+	
 	
 }

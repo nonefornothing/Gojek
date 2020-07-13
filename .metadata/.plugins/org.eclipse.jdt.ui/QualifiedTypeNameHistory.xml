@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="local.BotInc.Gojek.Controller.GoRideController"/>
-<fullyQualifiedTypeName name="local.BotInc.Gojek.View.ViewMain"/>
+<fullyQualifiedTypeName name="local.BotInc.Gojek.Controller.HistoryController"/>
+<fullyQualifiedTypeName name="local.BotInc.Gojek.Service.GoRideService"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="local.BotInc.Gojek.Controller.GoSendController"/>
+<fullyQualifiedTypeName name="local.BotInc.Gojek.Service.GoSendService"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="local.BotInc.Gojek.Service.DateService"/>
+<fullyQualifiedTypeName name="local.BotInc.Gojek.Model.CustomerGoSend"/>
+<fullyQualifiedTypeName name="java.sql.JDBCType"/>
 </qualifiedTypeNameHistroy>

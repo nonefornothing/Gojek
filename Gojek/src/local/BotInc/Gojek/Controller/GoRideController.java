@@ -1,50 +1,26 @@
 package local.BotInc.Gojek.Controller;
 
-import local.BotInc.Gojek.Service.*;
-import local.BotInc.Gojek.Model.*;
+import local.BotInc.Gojek.Service.GoRideService;
 
-public class GoRideController extends BaseController implements StrukService {
+public class GoRideController extends BaseController {
 
-	private String currentLoc, destinationLoc;
-
-	public GoRideController(String currentLoc, String destinationLoc) {
+	private String nameCustomer,currentLoc, destinationLoc;
+	private GoRideService goRideService;
+	private int gopayIdentify,tip,rate;
+	
+	public GoRideController(int gopayIdentify, String nameCustomer, String currentLoc, String destinationLoc, int tip,int rate) {
+		this.gopayIdentify = gopayIdentify;
+		this.nameCustomer = nameCustomer;
 		this.currentLoc = currentLoc;
 		this.destinationLoc = destinationLoc;
-	}
-	
-	@Override
-	public Driver getDrivers() {
-		Driver driver = new Driver();
-		driver.setNama("imam");
-		driver.setPlatNo("B 123 ABC");
-		return driver;
+		this.tip = tip;
+		this.rate = rate;
+		this.goRideService = new GoRideService(gopayIdentify,nameCustomer,currentLoc, destinationLoc,tip,rate);
 	}
 
 	@Override
-	public String cetak() {
-		Driver driver = getDrivers();
-		StringBuilder sb = new StringBuilder();
-		sb.append("\n=== Details ===");
-		sb.append("\nDriver name : " + driver.getNama());
-		sb.append("\nPlat no : " + driver.getPlatNo());
-		sb.append("\nAmount : " + totalAmount());
-		sb.append("\nFrom : " + currentLoc);
-		sb.append("\nTo : " + destinationLoc + "\n");
-		sb.append(says());
-
-		return sb.toString();
-	}
-
-	@Override
-	public Integer totalAmount() {
-		int condition1 = currentLoc.length();
-		int condition2 = destinationLoc.length();
-		return condition1 * condition2 * defaultAmount;
-	}
-
-	@Override
-	public String says() {
-		return "=== Thanks ===";
+	public String start() {
+		return this.goRideService.cetak();
 	}
 
 }

@@ -1,7 +1,0 @@
-package com.lawencon.gojek.service;
-
-public interface StrukService {
-
-	abstract String cetak();
-	
-}

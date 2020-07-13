@@ -1,9 +1,16 @@
 package local.BotInc.Gojek.View;
 
+import java.util.List;
+import local.BotInc.Gojek.Controller.HistoryController;
 
-import java.util.Scanner;
+public class ViewMain extends BaseView {
 
-public class ViewMain extends BaseView {	
+	private List<String> listHistory;
+	
+	public ViewMain(List<String> listHistory) {
+		this.listHistory = listHistory;
+		show();
+	}
 
 	@Override
 	public void show() {
@@ -11,25 +18,29 @@ public class ViewMain extends BaseView {
 		System.out.println("1. Go-Ride");
 		System.out.println("2. Go-Food");
 		System.out.println("3. Go-Send");
-		System.out.println("4. Exit");
+		System.out.println("4. History");
+		System.out.println("5. Exit");
+		System.out.print("Select menus [1-5] : ");
 
-		Scanner input = new Scanner(System.in);
-		System.out.print("Select menus [1-4] : ");
-		int pil = getAnInteger();
-		if (pil == 1) {
-			new ViewGoRide();
-		}
-//		else if (pil == 2) {
-//			new ViewGoFood();
-//		}
-		else if (pil == 3) {
-			new ViewGoSend();
-		}
-		else if(pil == 4) {
-			System.exit(0);
-		}
-		
-		input.close();
-		
+		do {
+			
+			int pil = getAnInteger();
+			if (pil == 1) {
+				new ViewGoRide(listHistory);
+			} else if (pil == 2) {
+				new ViewGoFood(listHistory);
+			} else if (pil == 3) {
+				new ViewGoSend(listHistory);
+			} else if (pil == 4) {
+				new HistoryController(listHistory);
+			} else if (pil == 5) {
+				input.close();
+				System.exit(0);
+			}else {
+				System.out.println("input out of range");
+			}
+			
+		}while(true);
+
 	}
 }

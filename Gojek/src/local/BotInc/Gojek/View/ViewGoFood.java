@@ -17,16 +17,15 @@ public class ViewGoFood extends BaseView {
 
 	@Override
 	void show() {
-
 		String namaMenu,namaRestaurant,alamatRestaurant;
 		int hargaMenu,jlhPesanan;
-		String namaCustomer,currentLoc;
+		String namaCustomer,alamatCustomer;
 	
 		System.out.println("==== Welcome to Go-Food by " + super.brandName + " ====");
 		System.out.println("Input your name : ");
 		namaCustomer = input.nextLine();
 		System.out.print("Input your location : ");
-		currentLoc = input.nextLine();
+		alamatCustomer = input.nextLine();
 		
 		//buat bisa memasukkan makanan berulang
 		tampilkanDaftar();
@@ -177,27 +176,91 @@ public class ViewGoFood extends BaseView {
 		System.out.println("Finding driver....");
 		System.out.println("Driver Found");
 
-		GoFoodController gofood = new GoFoodController(namaCustomer, currentLoc, namaRestaurant , alamat , namaMenu , hargaMenu, jlhPesanan);
+		int gopayIdentify;
+
+		System.out.println("Do you want to use Gopay for payment ? [yes/no]");
+		input.nextLine();
+		do {
+			String gopayChoose = input.nextLine();
+			if ("yes".equalsIgnoreCase(gopayChoose)) {
+				gopayIdentify = 1;
+				break;
+			} else if ("no".equalsIgnoreCase(gopayChoose)) {
+				gopayIdentify = 2;
+				break;
+			} else {
+				System.out.println("wrong input , input must [yes/no]");
+			}
+		} while (true);
+		
+		System.out.println("Finding driver....");
+		System.out.println("Driver Found");
+		System.out.println("Customer on the way to location ...... ");
+		System.out.println("Customer Arrived ......");
+		System.out.println("Please rate your trip experince [1-5] : ");
+
+		int rate;
+
+		do {
+
+			rate = getAnInteger();
+			if (rate == 1 | rate == 2 | rate == 3 | rate == 4 | rate == 5) {
+				break;
+			} else {
+				System.out.println("Input angka dari 1 - 5");
+			}
+
+		} while (true);
+
+		input.nextLine();
+		int tip;
+		System.out.println("Do you want give tip to your driver ? [yes/no]");
+
+		do {
+
+			String tipChoose = input.nextLine();
+			if ("yes".equalsIgnoreCase(tipChoose)) {
+				System.out.println("How much do you want give ? ");
+				tip = getAnInteger();
+				break;
+			} else if ("no".equalsIgnoreCase(tipChoose)) {
+				tip = 0;
+				break;
+			} else {
+				System.out.println("wrong input , input must yes or no");
+			}
+
+		} while (true);
+		
+		GoFoodController gofood = new GoFoodController(gopayIdentify,namaCustomer, alamatCustomer, namaRestaurant , alamatRestaurant , namaMenu , hargaMenu, jlhPesanan,tip,rate);
 		String cetak = gofood.start();
 		listHistory.add(cetak);
 		System.out.println(cetak);
 
-		System.out.print("Repeat [y or n] : ");
-		String repeat = input.nextLine();
-		if ("y".equalsIgnoreCase(repeat)) {
-			show();
-		} else {
-			new ViewMain(listHistory);
-		}
+		System.out.print("Do you want to using this service again [yes or no] : ");
+		do {
+
+			String repeat = input.nextLine();
+			if ("yes".equalsIgnoreCase(repeat)) {
+				show();
+				break;
+			} else if ("no".equalsIgnoreCase(repeat)){
+				new ViewMain(listHistory);
+				break;
+			}else {
+				System.out.println("wrong input , input must yes or no");
+			}
+
+		} while (true);
 
 	}
 
 	public static void tampilkanDaftar() {
 		System.out.println("Daftar Masakan yang dapat dipesan : ");
 		tampilkanDaftarBgIwan();
+		tampilkanDaftarOtoy();
 		tampilkanDaftarIbuAzka();
 		tampilkanDaftarMieAceh();
-		tampilkanDaftarOtoy();
 	}
 
 	public static void tampilkanDaftarBgIwan() {
@@ -230,7 +293,6 @@ public class ViewGoFood extends BaseView {
 		System.out.println(MIEACEH2.no + ". Nama Menu : " + MIEACEH2.namaMenu + " dengan harga " + MIEACEH2.harga);
 		System.out.println(MIEACEH3.no + ". Nama Menu : " + MIEACEH3.namaMenu + " dengan harga " + MIEACEH3.harga);
 		System.out.println(MIEACEH4.no + ". Nama Menu : " + MIEACEH4.namaMenu + " dengan harga " + MIEACEH4.harga);
-
 	}
 
 }
